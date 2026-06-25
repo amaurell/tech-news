@@ -87,6 +87,12 @@ body {
   font-size: 0.8rem;
   color: hsl(var(--muted-foreground));
   margin-top: 0.15rem;
+  animation: neonBlink 2s ease-in-out infinite;
+}
+
+@keyframes neonBlink {
+  0%, 100% { color: hsl(30 100% 50% / 0.6); text-shadow: 0 0 4px hsl(30 100% 50% / 0.3); }
+  50% { color: hsl(30 100% 50% / 1); text-shadow: 0 0 12px hsl(30 100% 50% / 0.7), 0 0 24px hsl(30 100% 50% / 0.4), 0 0 40px hsl(30 100% 50% / 0.2); }
 }
 
 .chat-window__actions {
