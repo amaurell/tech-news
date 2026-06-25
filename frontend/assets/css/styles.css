@@ -261,6 +261,15 @@ body {
   margin-top: 0.75rem;
 }
 
+.message--with-list {
+  max-width: 100% !important;
+  align-self: stretch !important;
+}
+
+.message--with-list .news-card {
+  width: 100%;
+}
+
 .news-card {
   background: hsl(var(--card));
   border: 1px solid hsl(var(--border));

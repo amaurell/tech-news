@@ -301,7 +301,7 @@ function MessageItem ({ message, onReadArticle, fading, style }) {
   }
 
   if (message.type === 'news-list') {
-    return h('div', { className: cls, style },
+    return h('div', { className: cls + ' message--with-list', style },
       h('p', { className: 'message__bubble' }, message.content),
       h('div', { className: 'news-list', role: 'list' },
         message.news.map((item, i) =>
