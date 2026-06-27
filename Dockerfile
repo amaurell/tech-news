@@ -16,6 +16,7 @@ COPY . .
 USER appuser
 
 ENV NODE_ENV=production
+ENV PORT=4001
 EXPOSE 4001
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
