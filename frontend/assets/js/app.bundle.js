@@ -435,12 +435,9 @@ function ChatWindow ({ messages, onSendMessage, loading, pendingSearch, onConfir
 }
 
 function LgpdBanner () {
-  const [visible, setVisible] = useState(() => {
-    try { return !sessionStorage.getItem('lgpd-ok') } catch { return true }
-  })
+  const [visible, setVisible] = useState(true)
 
   const dismiss = useCallback(() => {
-    try { sessionStorage.setItem('lgpd-ok', '1') } catch {}
     setVisible(false)
   }, [])
 
