@@ -434,6 +434,36 @@ function ChatWindow ({ messages, onSendMessage, loading, pendingSearch, onConfir
   )
 }
 
+function LgpdBanner () {
+  const [visible, setVisible] = useState(() => {
+    try { return !sessionStorage.getItem('lgpd-ok') } catch { return true }
+  })
+
+  const dismiss = useCallback(() => {
+    try { sessionStorage.setItem('lgpd-ok', '1') } catch {}
+    setVisible(false)
+  }, [])
+
+  if (!visible) return null
+
+  return h('div', { className: 'lgpd-banner', role: 'dialog', 'aria-label': 'Aviso de privacidade' },
+    h('div', { className: 'lgpd-banner__content' },
+      h('p', { className: 'lgpd-banner__text' },
+        'Este aplicativo utiliza CDNs (Google Fonts, unpkg) e logs de servidor que podem coletar seu endereço IP. ',
+        'Nenhum cookie é armazenado e nenhum dado pessoal é coletado intencionalmente. ',
+        'Ao continuar, você declara estar ciente. ',
+        h('a', {
+          className: 'lgpd-banner__link',
+          href: 'https://www.gov.br/esporte/pt-br/acesso-a-informacao/lgpd',
+          target: '_blank',
+          rel: 'noopener noreferrer'
+        }, 'LGPD')
+      ),
+      h('button', { className: 'lgpd-banner__btn', onClick: dismiss }, 'OK, entendi')
+    )
+  )
+}
+
 function App () {
   const { messages, sendMessage, confirmQuantity, cancelQuantity, clearMessages, autoOn, toggleAuto, fading, loading, pendingSearch } = useChat()
 
@@ -443,7 +473,10 @@ function App () {
     }
   }, [])
 
-  return h(ChatWindow, { messages, onSendMessage: sendMessage, loading, pendingSearch, onConfirmQuantity: confirmQuantity, onCancelQuantity: cancelQuantity, onReadArticle, onClearMessages: clearMessages, autoOn, onToggleAuto: toggleAuto, fading })
+  return h(React.Fragment, null,
+    h(LgpdBanner),
+    h(ChatWindow, { messages, onSendMessage: sendMessage, loading, pendingSearch, onConfirmQuantity: confirmQuantity, onCancelQuantity: cancelQuantity, onReadArticle, onClearMessages: clearMessages, autoOn, onToggleAuto: toggleAuto, fading })
+  )
 }
 
 const rootElement = document.getElementById('root')

@@ -575,6 +575,69 @@ body {
   box-shadow: 0 0 0 2px hsl(var(--ring) / 0.3);
 }
 
+.lgpd-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2000;
+  background: hsl(0 0% 5% / 0.97);
+  border-top: 1px solid hsl(var(--border));
+  padding: 0.75rem 1rem;
+  animation: lgpdSlideUp 0.3s ease;
+}
+
+@keyframes lgpdSlideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.lgpd-banner__content {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.lgpd-banner__text {
+  flex: 1;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: hsl(var(--muted-foreground));
+  min-width: 200px;
+}
+
+.lgpd-banner__link {
+  color: hsl(var(--primary));
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.lgpd-banner__link:hover {
+  color: hsl(var(--accent-hover));
+}
+
+.lgpd-banner__btn {
+  flex-shrink: 0;
+  padding: 0.4rem 1rem;
+  border-radius: calc(var(--radius) - 2px);
+  border: 1px solid hsl(var(--primary));
+  background: transparent;
+  color: hsl(var(--primary));
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.lgpd-banner__btn:hover {
+  background: hsl(var(--primary) / 0.15);
+  box-shadow: 0 0 0 2px hsl(var(--ring) / 0.2);
+}
+
 @media (max-width: 600px) {
   .message {
     max-width: 95%;
@@ -596,5 +659,15 @@ body {
     width: 44px;
     height: 44px;
     font-size: 1rem;
+  }
+
+  .lgpd-banner__content {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .lgpd-banner__btn {
+    width: 100%;
   }
 }
