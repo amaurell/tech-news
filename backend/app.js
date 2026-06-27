@@ -7,6 +7,8 @@ export async function buildApp () {
   const app = Fastify({ logger: true, trustProxy: true })
   await registerPlugins(app)
 
+  app.get('/api/health', async () => ({ status: 'ok', uptime: process.uptime() }))
+
   app.get('/favicon.ico', (req, reply) => reply.code(204).send())
 
   app.register(newsRoutes, { prefix: '/api/news' })
