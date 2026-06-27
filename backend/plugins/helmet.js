@@ -2,6 +2,8 @@ import helmet from '@fastify/helmet'
 
 export async function registerHelmet (app) {
   await app.register(helmet, {
+    crossOriginOpenerPolicy: false,
+    originAgentCluster: false,
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"],
